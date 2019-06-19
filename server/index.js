@@ -20,14 +20,19 @@ const echo = protoDescriptor.echo;
 
 
 
-function hello(parameters) {
-    return {
-        message: `Hello ${parameters.greeting} ${parameters.name}`
+function hello(call, callback) {
+    function handleHello(parameters){
+        return {
+            message: `Hello ${parameters.greeting} ${parameters.name}`
+        }
     }
+
+    callback(null, handleHello(call.request));
+    
 }
 const server = new grpc.Server();
 server.addService(echo.Echo.service, {
-    hello: hello
+    Hello: hello
 });
 
 server.bind('localhost:50051', grpc.ServerCredentials.createInsecure());

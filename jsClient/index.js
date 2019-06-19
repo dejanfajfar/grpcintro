@@ -14,10 +14,12 @@ var packageDefinition = protoLoader.loadSync(
 var echoDefinition = grpc.loadPackageDefinition(packageDefinition).echo;
 var client = new echoDefinition.Echo('localhost:50051', grpc.credentials.createInsecure());
 
+
 client.Hello({
     name: 'Thomson',
     greeting: 'Mr'
 }, (err, greeting) => {
+    console.log('boo');
     if (err) {
         console.error(err);
     }

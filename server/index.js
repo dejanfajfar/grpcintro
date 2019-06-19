@@ -1,10 +1,13 @@
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
-const ECHO_PROTO_PATH = __dirname + '/../proto/echo.proto';
+const helloHandler = require('./handler/helloHandler');
+const coinTossHandler = require('./handler/cointToss');
+
+const PROTO_PATH = __dirname + '/../proto/intro.proto';
 
 let packageDefinition = protoLoader.loadSync(
-    ECHO_PROTO_PATH,
+    PROTO_PATH,
     {
         keepCase: true,
         longs: String,
@@ -16,23 +19,20 @@ let packageDefinition = protoLoader.loadSync(
 
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
 
-const echo = protoDescriptor.echo;
-
-
+const introPackage = protoDescriptor.intropackage;
 
 function hello(call, callback) {
-    function handleHello(parameters){
-        return {
-            message: `Hello ${parameters.greeting} ${parameters.name}`
-        }
-    }
-
-    callback(null, handleHello(call.request));
-    
+    callback(null, helloHandler(call.request));
 }
+
+function coinToss(call) {
+    coinTossHandler(call);
+}
+
 const server = new grpc.Server();
-server.addService(echo.Echo.service, {
-    Hello: hello
+server.addService(introPackage.IntroService.service, {
+    Hello: hello,
+    CoinToss: coinToss
 });
 
 server.bind('localhost:50051', grpc.ServerCredentials.createInsecure());

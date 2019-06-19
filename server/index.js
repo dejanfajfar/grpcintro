@@ -1,7 +1,7 @@
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
-const ECHO_PROTO_PATH = __dirname + '/proto/echo.proto';
+const ECHO_PROTO_PATH = __dirname + '/../proto/echo.proto';
 
 let packageDefinition = protoLoader.loadSync(
     ECHO_PROTO_PATH,
@@ -30,5 +30,5 @@ server.addService(echo.Echo.service, {
     hello: hello
 });
 
-server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
+server.bind('localhost:50051', grpc.ServerCredentials.createInsecure());
 server.start();

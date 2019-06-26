@@ -8,4 +8,5 @@ client.IntroService().Hello({
         console.error(err);
     }
     console.log(greeting.message);
+    return;
 })

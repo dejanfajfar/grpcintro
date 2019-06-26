@@ -1,13 +1,14 @@
 "use strict";
 
-module.exports = parameters => {
+module.exports = (call, callback) => {
+    const parameters = call.request;
     // debug messages
-    console.log(`Hello ${parameters.greeting} ${parameters.name} (${new Date().toLocaleTimeString()})`);
+    console.log(`[${new Date().toISOString()}] Hello ${parameters.greeting} ${parameters.name}`);
     console.table(parameters);
     console.log('_______________________________________________________');
     
     // actual business logic ("the magic")
-    return {
+    callback(null, {
         message: `Hello ${parameters.greeting} ${parameters.name}`
-    }
+    });
 }

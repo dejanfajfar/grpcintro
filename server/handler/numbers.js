@@ -1,13 +1,13 @@
 "use strict";
 
 module.exports = async call => {
-    console.log(`coin toss request (${new Date().toLocaleTimeString()})`);
+    console.log(`[${new Date().toISOString()}] Numbers request`);
     // console.table(call);
     
     for(let i = 0; i < call.request.repetitions; i++) {
         await sleep(1000);
         let number = Math.floor(Math.random() * 100);
-        console.log(number);
+        console.log(`[${new Date().toISOString()}] generated ${number}`);
         call.write({
             tossValue: number
         });

@@ -16,10 +16,37 @@ A collection of simple nodejs applications to show various gRPC scenarios
 
 ## Showcases
 
-* A simple cros client chat
-* A client displaying an endless stream of numbers
-* A todo list
+* A simple chat
+* A stream of generated numbers
 * A simple echo service
+
+### Simple echo service
+
+First we have to start the server locally.
+
+```bash
+node server/index.js
+```
+
+In another shell start the client:
+
+```bash
+node jsClient/hello.js
+```
+
+### Stream of generated numbers
+
+First we have to start the server locally.
+
+```bash
+node server/index.js
+```
+
+In another shell start the client:
+
+```bash
+node jsClient/cointoss.js
+```
 
 ## gRPC concerns
 
@@ -34,5 +61,4 @@ A collection of simple nodejs applications to show various gRPC scenarios
 |Distributed tracing|Zipkin, Brave|
 |Monitoring|Prometheus|
 |Transcoding (gRPC <-> REST)|gRPC Gateway|
-
 

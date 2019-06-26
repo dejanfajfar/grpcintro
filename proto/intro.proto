@@ -5,7 +5,7 @@ package intropackage;
 service IntroService {
     rpc Hello (HelloRequest) returns (HelloResponse) {}
 
-    rpc CoinToss (CoinTossRequest) returns (stream CoinTossResponse) {}
+    rpc Numbers (NumbersRequest) returns (stream NumbersResponse) {}
 }
 
 service ChatService {
@@ -28,11 +28,11 @@ message HelloResponse {
     string message = 1;
 }
 
-message CoinTossRequest {
+message NumbersRequest {
     int32 repetitions = 1;
 }
 
-message CoinTossResponse {
+message NumbersResponse {
     int32 tossValue = 1;
 }
 

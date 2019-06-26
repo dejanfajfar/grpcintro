@@ -13,6 +13,10 @@ let packageDefinition = protoLoader.loadSync(
     });
 let serviceDefinition = grpc.loadPackageDefinition(packageDefinition).intropackage;
 
-module.exports = () => {
+module.exports.IntroService = () => {
     return new serviceDefinition.IntroService('localhost:50051', grpc.credentials.createInsecure());
 };
+
+module.exports.ChatService = () => {
+    return new serviceDefinition.ChatService('localhost:50051', grpc.credentials.createInsecure());
+}

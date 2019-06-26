@@ -2,7 +2,7 @@
 
 const client = require('./client');
 
-let call = client().CoinToss({
+let call = client.IntroService().CoinToss({
     repetitions: 10
 });
 

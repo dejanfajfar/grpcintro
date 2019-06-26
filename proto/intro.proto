@@ -8,6 +8,12 @@ service IntroService {
     rpc CoinToss (CoinTossRequest) returns (stream CoinTossResponse) {}
 }
 
+service ChatService {
+    rpc join(stream Message) returns (stream Message) {}
+
+    rpc send(Message) returns (Message) {}
+}
+
 enum Greeting {
     Mr = 0;
     Mrs = 1;
@@ -28,4 +34,9 @@ message CoinTossRequest {
 
 message CoinTossResponse {
     int32 tossValue = 1;
+}
+
+message Message {
+    string user = 1;
+    string text = 2;
 }

@@ -3,6 +3,7 @@ const protoLoader = require('@grpc/proto-loader');
 
 const helloHandler = require('./handler/helloHandler');
 const coinTossHandler = require('./handler/cointToss');
+const chatHandler = require('./handler/chat');
 
 const PROTO_PATH = __dirname + '/../proto/intro.proto';
 
@@ -33,6 +34,10 @@ const server = new grpc.Server();
 server.addService(introPackage.IntroService.service, {
     Hello: hello,
     CoinToss: coinToss
+});
+server.addService(introPackage.ChatService.service, {
+    join: chatHandler.join,
+    send: chatHandler.send
 });
 
 server.bind('localhost:50051', grpc.ServerCredentials.createInsecure());

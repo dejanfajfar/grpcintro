@@ -1,6 +1,6 @@
 const client = require('./client');
 
-client().Hello({
+client.IntroService().Hello({
     name: 'Thomson',
     greeting: 'Mr'
 }, (err, greeting) => {
